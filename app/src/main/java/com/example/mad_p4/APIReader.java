@@ -1,6 +1,5 @@
 package com.example.mad_p4;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -16,7 +15,8 @@ import org.json.JSONObject;
 
 public class APIReader {
 
-    private String api_url;
+    private String baseURL;
+    private String formattedURL;
     private RequestQueue requestQueue;
     private JSONObject response;
 
@@ -24,23 +24,23 @@ public class APIReader {
         requestQueue = Volley.newRequestQueue(context);
     }
 
-    public APIReader(Context context, String url, String... args) {
+    public APIReader(Context context, String url, Object... args) {
         this(context);
-        setURL(url, args);
+        baseURL = url;
+
+        formatURL(url, args);
     }
 
-    public void setURL(String url, String... args) {
-        api_url = String.format(url, args);
+    public String getFormattedURL() { return formattedURL; }
+    public void formatURL(Object... format_args) {
+        formattedURL = String.format(baseURL, format_args);
     }
 
-
-//    public APIReader(Context context, String city) {
-//
-//        // instantiate the request queue
-//        requestQueue = Volley.newRequestQueue(context); // used to fulfill requests
-//        this.city = city;
-//
-//    }
+    public String getBaseURL() { return baseURL; }
+    public void setBaseURL(String url, Object... format_args) {
+        baseURL = url;
+        formatURL(format_args);
+    }
 
     public void prepareRequest() {
 
@@ -48,18 +48,19 @@ public class APIReader {
         JsonObjectRequest jsonObjectRequest = // defines the kind of request we want to do and how to handle it
                 new JsonObjectRequest(
                         Request.Method.GET, // the request method
-                        api_url, // the URL
+                        formattedURL, // the URL
                         null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) { // I guess I'm supposed to capture the request here somehow
 
-                                try {
-                                    APIReader.this.response = response.getJSONObject("main");
-                                }
-                                catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                APIReader.this.response = response;
+//                                try {
+//                                    APIReader.this.response = response;
+//                                }
+//                                catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
 
                             }
                         },
@@ -85,5 +86,6 @@ public class APIReader {
     public Object getAttribute(String name) throws JSONException {
         return response.get(name);
     }
+
 
 }
