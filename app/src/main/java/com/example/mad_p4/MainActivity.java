@@ -12,7 +12,7 @@ import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
 
-    DadJokeRequester reader;
+    DadJokeRequester joker;
 
 
     @Override
@@ -20,11 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        reader = new DadJokeRequester(this);
-        reader.addOnRequestFinishedListener(new DadJokeListener());
+        if (savedInstanceState == null) {
+
+            joker = new DadJokeRequester(this);
+            joker.addOnRequestFinishedListener(new DadJokeListener());
+
+        }
 
         try {
-            reader.requestRandomDadJoke();
+            joker.requestRandomDadJoke();
         }
         catch (JSONException e) {
             e.printStackTrace();
