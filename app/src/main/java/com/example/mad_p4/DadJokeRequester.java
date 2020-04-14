@@ -4,9 +4,9 @@ import android.content.Context;
 
 import org.json.JSONException;
 
-public class DadJokeReader extends APIReader {
+public class DadJokeRequester extends APIReader {
 
-    public DadJokeReader(Context context) {
+    public DadJokeRequester(Context context) {
         super(context, context.getString(R.string.api));
     }
 

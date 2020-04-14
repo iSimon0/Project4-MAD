@@ -5,19 +5,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ResourceCursorAdapter;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
 
-    DadJokeReader reader;
+    DadJokeRequester reader;
 
 
     @Override
@@ -25,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        reader = new DadJokeReader(this);
+        reader = new DadJokeRequester(this);
         reader.addOnRequestFinishedListener(new DadJokeListener());
 
         try {
