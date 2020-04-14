@@ -8,12 +8,32 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+
 public class MainActivity extends AppCompatActivity {
+
+    DadJokeRequester joker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null) {
+
+            joker = new DadJokeRequester(this);
+            joker.addOnRequestFinishedListener(new DadJokeListener());
+
+        }
+
+        try {
+            joker.requestRandomDadJoke();
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
