@@ -3,6 +3,7 @@ package com.example.mad_p4;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -12,6 +13,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class APIReader {
 
@@ -63,6 +67,8 @@ public class APIReader {
 //                                }
 
                             }
+
+
                         },
                         new Response.ErrorListener() {
                             @Override
@@ -71,8 +77,20 @@ public class APIReader {
                                 Log.e("Volley Error", error.toString());
 
                             }
+
+
                         }
-                );
+                )
+                {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> headers = new HashMap<>();
+
+                        headers.put("User-Agent", "Dad Joke Mobile App => https://github.com/iSimon0/Project4-MAD; Contact => myersmk@umich.edu, isimon@umich.edu");
+                        headers.put("Accept", "application/json");
+                        return headers;
+                    }
+                };
 
         // add request to the queue
         requestQueue.add(jsonObjectRequest); // actually processes the request for json data
