@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             joker = new DadJokeRequester(this);
-            joker.addOnRequestFinishedListener(new DadJokeListener());
 
         }
 
