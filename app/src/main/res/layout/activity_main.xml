@@ -8,14 +8,14 @@
 
     <fragment
         android:id="@+id/tempFrag"
-        android:name="com.example.mad_p4.TempFragment"
+        android:name="com.example.mad_p4.SearchJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout="@layout/temp_activity" />
 
     <fragment
         android:id="@+id/distanceFrag"
-        android:name="com.example.mad_p4.DistanceFragment"
+        android:name="com.example.mad_p4.RandomJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout="@layout/distance_activity" />
