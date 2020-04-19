@@ -12,7 +12,7 @@ import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
 
-    DadJokeRequester joker;
+    RandomJokeRequester joker;
 
 
     @Override
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
 
-            joker = new DadJokeRequester(this);
+            joker = new RandomJokeRequester(this);
 
         }
 
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     public void displayDistFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         FragmentManager fm = getSupportFragmentManager();
-        DistanceFragment dist = (DistanceFragment)fm.findFragmentById(R.id.distanceFrag);
-        TempFragment temp = (TempFragment)fm.findFragmentById(R.id.tempFrag);
+        RandomJokeFragment dist = (RandomJokeFragment)fm.findFragmentById(R.id.distanceFrag);
+        SearchJokeFragment temp = (SearchJokeFragment)fm.findFragmentById(R.id.tempFrag);
         ft.show(dist);
         ft.hide(temp);
         ft.commit();
@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
     public void displayTempFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         FragmentManager fm = getSupportFragmentManager();
-        DistanceFragment dist = (DistanceFragment)fm.findFragmentById(R.id.distanceFrag);
-        TempFragment temp = (TempFragment)fm.findFragmentById(R.id.tempFrag);
+        RandomJokeFragment dist = (RandomJokeFragment)fm.findFragmentById(R.id.distanceFrag);
+        SearchJokeFragment temp = (SearchJokeFragment)fm.findFragmentById(R.id.tempFrag);
         ft.show(temp);
         ft.hide(dist);
         ft.commit();

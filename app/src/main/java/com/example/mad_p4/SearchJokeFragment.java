@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-public class DistanceFragment extends Fragment {
-    private float inputDist;
+public class SearchJokeFragment extends Fragment {
+    private float inputTemp;
     private String label;
     private boolean converge;
-    private float finalDist;
+    private float finalTemp;
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
@@ -24,33 +24,33 @@ public class DistanceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.distance_activity,
+        final View view = inflater.inflate(R.layout.temp_activity,
                 container, false);
         return view;
     }
     @Override
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
-        outState.putFloat("temp", inputDist);
+        outState.putFloat("temp", inputTemp);
         outState.putBoolean("converge", converge);
         outState.putString("label", label);
-        outState.putFloat("final", finalDist);
+        outState.putFloat("final", finalTemp);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-        final Button button = view.findViewById(R.id.button2);
         final EditText input = view.findViewById(R.id.editText2);
         final Switch conversion = view.findViewById(R.id.switch2);
         final TextView output = view.findViewById(R.id.textView3);
+        final Button button = (Button) view.findViewById(R.id.button);
         final TextView outputUnit = view.findViewById(R.id.textView4);
         if(savedInstanceState != null){
-            inputDist = savedInstanceState.getFloat("temp");
+            inputTemp = savedInstanceState.getFloat("temp");
             converge = savedInstanceState.getBoolean("converge");
             label = savedInstanceState.getString("label");
-            finalDist = savedInstanceState.getFloat("final");
+            finalTemp = savedInstanceState.getFloat("final");
             conversion.setChecked(converge);
-            input.setText(Float.toString(inputDist));
-            output.setText(Float.toString(finalDist));
+            input.setText(Float.toString(inputTemp));
+            output.setText(Float.toString(finalTemp));
             outputUnit.setText(label);
         }
         button.setOnClickListener(new View.OnClickListener() {
@@ -58,23 +58,24 @@ public class DistanceFragment extends Fragment {
             public void onClick(View v) {
                 if(conversion.isChecked()){
                     converge = true;
-                    label = "Miles";
+                    label = "Fahrenheit";
                 }
                 else{
                     converge = false;
-                    label = "Kilometers";
+                    label = "Celsius";
                 }
-                float distance = Float.valueOf(input.getText().toString());
-                if(conversion.isChecked()){
-                    distance = (distance / 1.609f);
-                    output.setText(Float.toString(distance));
+                inputTemp = Float.valueOf(input.getText().toString());
+                if(converge){
+                    finalTemp = (inputTemp * 1.8f) + 32;
+                    output.setText(Float.toString(finalTemp));
                     outputUnit.setText(label);
                 }
                 else{
-                    distance = (distance * 1.609f);
-                    output.setText(Float.toString(distance));
+                    finalTemp = (inputTemp - 32) * 5/9;
+                    output.setText(Float.toString(finalTemp));
                     outputUnit.setText(label);
                 }
+
             }
         });
     }

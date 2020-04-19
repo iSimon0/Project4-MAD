@@ -22,7 +22,6 @@ public class APIReader {
     private String baseURL;
     private String formattedURL;
     private RequestQueue requestQueue;
-    private JSONObject response;
     private Response.Listener listener;
 
     public APIReader(Context context) {
@@ -39,6 +38,10 @@ public class APIReader {
     public String getFormattedURL() { return formattedURL; }
     public void formatURL(Object... format_args) {
         formattedURL = String.format(baseURL, format_args);
+    }
+
+    public void appendArgs(String args) {
+        formattedURL = baseURL + args;
     }
 
     public String getBaseURL() { return baseURL; }
@@ -85,14 +88,6 @@ public class APIReader {
         // add request to the queue
         requestQueue.add(jsonObjectRequest); // actually processes the request for json data
 
-    }
-
-    public void addOnRequestFinishedListener(RequestQueue.RequestFinishedListener listener) {
-        requestQueue.addRequestFinishedListener(listener);
-    }
-
-    public Object getAttribute(String name) throws JSONException {
-        return response.get(name);
     }
 
 
