@@ -1,5 +1,6 @@
 package com.example.mad_p4;
 
+import android.app.Activity;
 import android.content.Context;
 
 import org.json.JSONException;
@@ -9,8 +10,9 @@ public class DadJokeRequester {
     private APIReader reader;
     public static String url = "https://icanhazdadjoke.com/";
 
-    public DadJokeRequester(Context context) {
-        reader = new APIReader(context);
+    public DadJokeRequester(Activity context) {
+        reader = new APIReader(context, url);
+        reader.setResponseListener(new DadJokeListener(context));
     }
 
     public void requestRandomDadJoke() throws JSONException {

@@ -23,6 +23,7 @@ public class APIReader {
     private String formattedURL;
     private RequestQueue requestQueue;
     private JSONObject response;
+    private Response.Listener listener;
 
     public APIReader(Context context) {
         requestQueue = Volley.newRequestQueue(context);
@@ -46,6 +47,10 @@ public class APIReader {
         formatURL(format_args);
     }
 
+    public void setResponseListener(Response.Listener listener) {
+        this.listener = listener;
+    }
+
     public void prepareRequest() {
 
         // create object request
@@ -54,22 +59,7 @@ public class APIReader {
                         Request.Method.GET, // the request method
                         formattedURL, // the URL
                         null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) { // I guess I'm supposed to capture the request here somehow
-
-                                APIReader.this.response = response;
-//                                try {
-//                                    APIReader.this.response = response;
-//                                }
-//                                catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-
-                            }
-
-
-                        },
+                        listener,
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
