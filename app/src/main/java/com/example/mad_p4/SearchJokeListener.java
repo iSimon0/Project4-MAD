@@ -1,7 +1,11 @@
 package com.example.mad_p4;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Response;
 
@@ -15,32 +19,33 @@ import java.util.List;
 
 public class SearchJokeListener implements Response.Listener<JSONObject> {
     Activity activity;
+    RecyclerViewAdapter adapter;
+    ArrayList<String> jokes;
+    Context context;
 
-    public SearchJokeListener(Activity activity) {
+    public SearchJokeListener(Activity activity, Context context) {
         this.activity = activity;
-
+        this.context = context;
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        String[] jokes;
-
         try {
             jokes = getJokes(response);
-
             for (String joke : jokes) {
                 Log.i("Search Joke", joke);
             }
-
-
-            // update recycler view here
+            RecyclerView recyclerView = ((Activity)context).findViewById(R.id.jokeList);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            adapter = new RecyclerViewAdapter(context, jokes);
+            recyclerView.setAdapter(adapter);
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private String[] getJokes(JSONObject response) throws JSONException {
+    private ArrayList<String> getJokes(JSONObject response) throws JSONException {
         int limit = response.getInt("limit");
         ArrayList<String> jokes = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
@@ -49,7 +54,7 @@ public class SearchJokeListener implements Response.Listener<JSONObject> {
             jokes.add(results.getJSONObject(i).getString("joke"));
         }
 
-        return (String[]) jokes.toArray();
+        return jokes;
     }
 
 }
