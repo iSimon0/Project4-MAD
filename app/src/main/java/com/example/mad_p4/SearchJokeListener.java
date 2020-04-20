@@ -23,9 +23,8 @@ public class SearchJokeListener implements Response.Listener<JSONObject> {
     ArrayList<String> jokes;
     Context context;
 
-    public SearchJokeListener(Activity activity, Context context) {
+    public SearchJokeListener(Activity activity) {
         this.activity = activity;
-        this.context = context;
     }
 
     @Override
@@ -35,7 +34,7 @@ public class SearchJokeListener implements Response.Listener<JSONObject> {
             for (String joke : jokes) {
                 Log.i("Search Joke", joke);
             }
-            RecyclerView recyclerView = ((Activity)context).findViewById(R.id.jokeList);
+            RecyclerView recyclerView = activity.findViewById(R.id.jokeList);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             adapter = new RecyclerViewAdapter(context, jokes);
             recyclerView.setAdapter(adapter);

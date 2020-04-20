@@ -13,15 +13,14 @@ import androidx.fragment.app.Fragment;
 
 public class SearchJokeFragment extends Fragment {
     private String jokeSearchTerm;
-    RandomJokeRequester joker;
-    RandomJokeListener listener;
-    SearchJokeRequester request;
+    SearchJokeListener listener;
+    SearchJokeRequester joker;
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        joker = new RandomJokeRequester(getActivity());
-        listener = new RandomJokeListener(getActivity());
 
+        joker = new SearchJokeRequester(getActivity());
+        listener = new SearchJokeListener(getActivity());
         joker.setJokeListener(listener);
     }
     @Override
@@ -48,7 +47,7 @@ public class SearchJokeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String searchTerm = input.getText().toString();
-                request.requestJokeSearch(searchTerm);
+                joker.requestJokeSearch(searchTerm);
             }
         });
     }
