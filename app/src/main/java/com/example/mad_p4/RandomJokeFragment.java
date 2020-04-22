@@ -16,11 +16,7 @@ import org.json.JSONException;
 import java.util.Random;
 
 public class RandomJokeFragment extends Fragment {
-    private float inputDist;
-    private String label;
-    private boolean converge;
-    private float finalDist;
-
+    private String jokeSaved;
     RandomJokeRequester joker;
     RandomJokeListener listener;
 
@@ -43,29 +39,13 @@ public class RandomJokeFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
-        outState.putFloat("temp", inputDist);
-        outState.putBoolean("converge", converge);
-        outState.putString("label", label);
-        outState.putFloat("final", finalDist);
+        outState.putString("temp", jokeSaved);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         final Button button = view.findViewById(R.id.button);
-        final EditText input = view.findViewById(R.id.editText2);
-        final Switch conversion = view.findViewById(R.id.switch2);
-        final TextView output = view.findViewById(R.id.textView3);
-        final TextView outputUnit = view.findViewById(R.id.textView4);
         if(savedInstanceState != null){
-            inputDist = savedInstanceState.getFloat("temp");
-            converge = savedInstanceState.getBoolean("converge");
-            label = savedInstanceState.getString("label");
-            finalDist = savedInstanceState.getFloat("final");
-            conversion.setChecked(converge);
-            input.setText(Float.toString(inputDist));
-            output.setText(Float.toString(finalDist));
-            outputUnit.setText(label);
-
-
+            jokeSaved = savedInstanceState.getString("temp");
         }
 
         button.setOnClickListener(new View.OnClickListener() {
