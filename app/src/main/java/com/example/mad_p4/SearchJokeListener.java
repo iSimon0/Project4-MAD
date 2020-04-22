@@ -27,8 +27,13 @@ public class SearchJokeListener implements Response.Listener<JSONObject> {
         this.activity = activity;
     }
 
+    public void setListAdapter(RecyclerViewAdapter adapter) {
+        this.adapter = adapter;
+    }
+
     @Override
     public void onResponse(JSONObject response) {
+
         try {
             jokes = getJokes(response);
             for (String joke : jokes) {
