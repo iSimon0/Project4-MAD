@@ -8,28 +8,51 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mad_p4.R;
-import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.APIRequester;
+import com.example.mad_p4.requester.request.SearchDadJokeRequest;
+import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.SearchDadJokeRequester;
 
-public class SearchJokeFragment extends Fragment {
+public class SearchDadJokeFragment extends Fragment {
     private String jokeSearchTerm;
-    SearchDadJokeResponseListener listener;
-    SearchDadJokeRequester joker;
 
-    APIRequester reader;
+    SearchDadJokeRequest request;
+    SearchDadJokeResponseListener listener;
+    SearchDadJokeRequester requester;
+
+    private RecyclerView list;
+    private EditText searchField;
+    private Button nextPageButton;
+    private Button previousPageButton;
+    private Button searchButton;
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-        joker = new SearchDadJokeRequester(getActivity());
+
+        getViews();
+        initRequests();
+
+    }
+
+    private void getViews() {
+
+    }
+
+    private void initRequests() {
         listener = new SearchDadJokeResponseListener();
-        // joker.setJokeListener(listener);
+        requester = new SearchDadJokeRequester(
+                getActivity()
+        );
 
 
-
+        listener.setTarget(list);
+        requester.setListener(listener);
+        requester.search();
     }
 
     @Override
@@ -60,7 +83,7 @@ public class SearchJokeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String searchTerm = input.getText().toString();
-                joker.sendRequest(searchTerm, 1);
+                requester.enqueue(request);
             }
         });
     }

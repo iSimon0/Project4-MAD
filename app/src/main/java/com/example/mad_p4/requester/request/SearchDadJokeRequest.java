@@ -1,6 +1,8 @@
 package com.example.mad_p4.requester.request;
 
+import com.android.volley.Response;
 import com.example.mad_p4.requester.request.listener.DadJokeErrorListener;
+import com.example.mad_p4.requester.request.listener.DadJokeResponseListener;
 import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 
 public class SearchDadJokeRequest extends DadJokeRequest {
@@ -10,19 +12,19 @@ public class SearchDadJokeRequest extends DadJokeRequest {
     public static final String DEFAULT_SEARCH_TERM = "";
     public static final int DEFAULT_PAGE_NUMBER = 1;
 
-    public SearchDadJokeRequest(String term, int pageNumber) {
+    public SearchDadJokeRequest(String term, int pageNumber, Response.Listener listener) {
         super(
-                new SearchDadJokeResponseListener(),
+                listener,
                 new DadJokeErrorListener(),
-                SEARCH + TERM + term + PAGE + pageNumber // gets all jokes
+                SEARCH + TERM + term + PAGE + pageNumber
         );
     }
 
-    public SearchDadJokeRequest(String term) {
-        this(term, DEFAULT_PAGE_NUMBER);
-    }
-
-    public SearchDadJokeRequest() {
-        this(DEFAULT_SEARCH_TERM);
+    public SearchDadJokeRequest(Response.Listener listener) {
+        super(
+                listener,
+                new DadJokeErrorListener(),
+                SEARCH
+        );
     }
 }

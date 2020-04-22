@@ -5,23 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.mad_p4.R;
 import com.example.mad_p4.requester.RandomDadJokeRequester;
+import com.example.mad_p4.requester.request.listener.RandomDadJokeResponseListener;
 
-public class RandomJokeFragment extends Fragment {
+public class RandomDadJokeFragment extends Fragment {
     private String jokeSaved;
-    RandomDadJokeRequester requester;
+    private TextView jokeText;
+
+    private RandomDadJokeRequester requester;
+    private RandomDadJokeResponseListener listener;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        requester = new RandomDadJokeRequester(getActivity());
 
-        requester.sendRequest();
+        listener = new RandomDadJokeResponseListener();
+        requester = new RandomDadJokeRequester(getContext());
+        jokeText = getActivity().findViewById(R.id.randomJokeText);
 
+        listener.setTarget(jokeText); // update this text on response
+        requester.setListener(listener); // attach listener to request
+        requester.request(); // request a random joke
 
     }
 
@@ -50,7 +59,7 @@ public class RandomJokeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requester.sendRequest();
+                requester.request();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.mad_p4.adapter;
+package com.example.mad_p4.recycler;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -45,7 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder { //TODO: CHECK IF NEED TO BE STATIC
         TextView myTextView;
 
         ViewHolder(View itemView) {
