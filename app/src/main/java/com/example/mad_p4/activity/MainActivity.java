@@ -1,4 +1,4 @@
-package com.example.mad_p4;
+package com.example.mad_p4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,29 +8,34 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.mad_p4.R;
+import com.example.mad_p4.fragment.RandomJokeFragment;
+import com.example.mad_p4.fragment.SearchJokeFragment;
+import com.example.mad_p4.requester.RandomDadJokeRequester;
+
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
 
-    RandomJokeRequester joker;
+    RandomDadJokeRequester joker;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.temp_activity);
-        if (savedInstanceState == null) {
-
-            joker = new RandomJokeRequester(this);
-
-        }
-
-        try {
-            joker.requestRandomDadJoke();
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        if (savedInstanceState == null) {
+//
+//            joker = new RandomDadJokeRequester(this);
+//
+//        }
+//
+//        try {
+//            joker.requestRandomDadJoke();
+//        }
+//        catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
     }
     @Override
