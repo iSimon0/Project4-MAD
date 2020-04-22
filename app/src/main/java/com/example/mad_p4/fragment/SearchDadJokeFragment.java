@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mad_p4.R;
-import com.example.mad_p4.requester.APIRequester;
 import com.example.mad_p4.requester.request.SearchDadJokeRequest;
 import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.SearchDadJokeRequester;
@@ -58,7 +57,7 @@ public class SearchDadJokeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.temp_activity,
+        final View view = inflater.inflate(R.layout.fragment_search,
                 container, false);
         return view;
     }

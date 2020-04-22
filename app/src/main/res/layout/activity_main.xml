@@ -11,14 +11,14 @@
         android:name="com.example.mad_p4.fragment.SearchDadJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/temp_activity" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/distanceFrag"
         android:name="com.example.mad_p4.fragment.RandomDadJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/distance_activity" />
+        tools:layout="@layout/fragment_random" />
 
     <FrameLayout
         android:id="@+id/fragment_container"

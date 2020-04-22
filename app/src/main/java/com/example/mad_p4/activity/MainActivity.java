@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.temp_activity);
+        setContentView(R.layout.fragment_search);
 //        if (savedInstanceState == null) {
 //
 //            joker = new RandomDadJokeRequester(this);
