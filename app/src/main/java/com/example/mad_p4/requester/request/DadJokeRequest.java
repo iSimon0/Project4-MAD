@@ -1,10 +1,9 @@
-package com.example.mad_p4.request;
+package com.example.mad_p4.requester.request;
 
 import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;

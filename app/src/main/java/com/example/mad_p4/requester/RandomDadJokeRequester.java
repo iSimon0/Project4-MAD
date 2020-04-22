@@ -2,7 +2,7 @@ package com.example.mad_p4.requester;
 
 import android.content.Context;
 
-import com.example.mad_p4.request.DadJokeRandomRequest;
+import com.example.mad_p4.requester.request.RandomDadJokeRequest;
 
 public class RandomDadJokeRequester extends APIRequester {
 
@@ -12,6 +12,10 @@ public class RandomDadJokeRequester extends APIRequester {
     }
 
     public void sendRequest() {
-        sendRequest(new DadJokeRandomRequest());
+
+        sendRequest(
+                new RandomDadJokeRequest()
+        );
+
     }
 }

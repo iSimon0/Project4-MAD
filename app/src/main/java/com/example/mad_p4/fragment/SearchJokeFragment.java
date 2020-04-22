@@ -10,13 +10,13 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.example.mad_p4.R;
-import com.example.mad_p4.listener.DadJokeSearchListener;
+import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.APIRequester;
 import com.example.mad_p4.requester.SearchDadJokeRequester;
 
 public class SearchJokeFragment extends Fragment {
     private String jokeSearchTerm;
-    DadJokeSearchListener listener;
+    SearchDadJokeResponseListener listener;
     SearchDadJokeRequester joker;
 
     APIRequester reader;
@@ -25,7 +25,7 @@ public class SearchJokeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         joker = new SearchDadJokeRequester(getActivity());
-        listener = new DadJokeSearchListener();
+        listener = new SearchDadJokeResponseListener();
         // joker.setJokeListener(listener);
 
 

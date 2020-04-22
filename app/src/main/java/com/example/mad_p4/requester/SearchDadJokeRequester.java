@@ -1,7 +1,7 @@
 package com.example.mad_p4.requester;
 
 import android.content.Context;
-import com.example.mad_p4.request.DadJokeSearchRequest;
+import com.example.mad_p4.requester.request.SearchDadJokeRequest;
 
 public class SearchDadJokeRequester extends DadJokeRequester {
 
@@ -11,19 +11,19 @@ public class SearchDadJokeRequester extends DadJokeRequester {
 
     public void sendRequest(String term, int pageNumber) {
         sendRequest(
-                new DadJokeSearchRequest(term, pageNumber)
+                new SearchDadJokeRequest(term, pageNumber)
         );
     }
 
     public void sendRequest() {
         sendRequest(
-                new DadJokeSearchRequest()
+                new SearchDadJokeRequest()
         );
     }
 
     public void sendRequest(String term) {
         sendRequest(
-                new DadJokeSearchRequest(term)
+                new SearchDadJokeRequest(term)
         );
     }
 

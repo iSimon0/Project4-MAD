@@ -1,15 +1,13 @@
-package com.example.mad_p4.listener;
+package com.example.mad_p4.requester.request.listener;
 
-import android.app.Activity;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.android.volley.Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DadJokeRandomListener implements Response.Listener<JSONObject> {
+public class RandomDadJokeResponseListener implements Response.Listener<JSONObject> {
     JSONObject response;
 
     @Override

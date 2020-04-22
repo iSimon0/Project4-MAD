@@ -1,4 +1,4 @@
-package com.example.mad_p4.listener;
+package com.example.mad_p4.requester.request.listener;
 
 import android.content.Context;
 
@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class DadJokeSearchListener implements Response.Listener<JSONObject> {
+public class SearchDadJokeResponseListener implements Response.Listener<JSONObject> {
 //    Activity activity;
     RecyclerViewAdapter adapter;
     ArrayList<String> jokes;
