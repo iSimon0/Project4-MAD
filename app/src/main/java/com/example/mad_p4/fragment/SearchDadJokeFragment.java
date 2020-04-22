@@ -83,7 +83,7 @@ public class SearchDadJokeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String searchTerm = input.getText().toString();
-                requester.enqueue(request);
+                requester.search(searchTerm);
             }
         });
     }
