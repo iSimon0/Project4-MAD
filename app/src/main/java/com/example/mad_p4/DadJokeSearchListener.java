@@ -17,13 +17,13 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchJokeListener implements Response.Listener<JSONObject> {
+public class DadJokeSearchListener implements Response.Listener<JSONObject> {
     Activity activity;
     RecyclerViewAdapter adapter;
     ArrayList<String> jokes;
     Context context;
 
-    public SearchJokeListener(Activity activity) {
+    public DadJokeSearchListener(Activity activity) {
         this.activity = activity;
     }
 

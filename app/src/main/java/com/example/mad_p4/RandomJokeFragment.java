@@ -5,26 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import org.json.JSONException;
 
-import java.util.Random;
-
 public class RandomJokeFragment extends Fragment {
     private String jokeSaved;
     RandomJokeRequester joker;
-    RandomJokeListener listener;
+    DadJokeRandomListener listener;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         joker = new RandomJokeRequester(getActivity());
-        listener = new RandomJokeListener(getActivity());
+        listener = new DadJokeRandomListener(getActivity());
 
         joker.setJokeListener(listener);
 

@@ -11,21 +11,23 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class APIReader {
+public class APIReader  {
 
     private String baseURL;
     private String formattedURL;
     private RequestQueue requestQueue;
-    private Response.Listener listener;
+    private Response.Listener<JSONObject> responseListener;
+    private Response.ErrorListener errorListener;
+
 
     public APIReader(Context context) {
         requestQueue = Volley.newRequestQueue(context);
+        createDefaultListeners();
     }
 
     public APIReader(Context context, String url, Object... args) {
@@ -50,29 +52,29 @@ public class APIReader {
         formatURL(format_args);
     }
 
-    public void setResponseListener(Response.Listener listener) {
-        this.listener = listener;
+    public void setResponseListener(Response.Listener<JSONObject> listener) {
+        this.responseListener = listener;
     }
 
-    public void prepareRequest() {
+    public void setErrorListener(Response.ErrorListener errorListener) {
+        this.errorListener = errorListener;
+    }
+
+    public void setRequest(JsonObjectRequest request) {
+
+    }
+
+    public void sendRequest() {
+
 
         // create object request
-        JsonObjectRequest jsonObjectRequest = // defines the kind of request we want to do and how to handle it
+        JsonObjectRequest request = // defines the kind of request we want to do and how to handle it
                 new JsonObjectRequest(
                         Request.Method.GET, // the request method
                         formattedURL, // the URL
                         null,
-                        listener,
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                                Log.e("Volley Error", error.toString());
-
-                            }
-
-
-                        }
+                        responseListener,
+                        errorListener
                 )
                 {
                     @Override
@@ -86,9 +88,26 @@ public class APIReader {
                 };
 
         // add request to the queue
-        requestQueue.add(jsonObjectRequest); // actually processes the request for json data
+        requestQueue.add(request); // actually processes the request for json data
 
     }
+
+    private void createDefaultListeners() { // ensures there is always a listener for the API call
+        responseListener = new Response.Listener<JSONObject>() { // listens for a response from a website
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("Response", response.toString());
+            }
+        };
+
+        errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Volley Error", error.toString());
+            }
+        };
+    }
+
 
 
 }
