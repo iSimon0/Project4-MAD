@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,12 +26,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            randomJokeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_random_joke);
-            searchJokeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_search_joke);
+        randomJokeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_random_joke);
+        searchJokeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_search_joke);
 
+
+
+        if (savedInstanceState == null) {
             currentFragment = searchJokeFragment;
             display(randomJokeFragment);
+        }
+        else {
+            boolean flag = getPreferences(MODE_PRIVATE).getBoolean("random", true);
+            if (flag) {
+                currentFragment = randomJokeFragment;
+            }
+            else {
+                currentFragment = searchJokeFragment;
+            }
         }
     }
 
@@ -43,6 +55,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle saveInstanceState){
         super.onSaveInstanceState(saveInstanceState);
+
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        if (currentFragment == randomJokeFragment) {
+            preferences.edit()
+                    .putBoolean("random", true)
+                    .apply();
+        }
+        else {
+            preferences.edit()
+                    .putBoolean("random", false)
+                    .apply();
+        }
     }
 
     @Override
