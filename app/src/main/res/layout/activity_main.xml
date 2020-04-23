@@ -13,17 +13,17 @@ DATE: 4/23/2020
     tools:context="com.example.mad_p4.activity.MainActivity">
 
     <fragment
-        android:id="@+id/tempFrag"
+        android:id="@+id/fragment_search_joke"
         android:name="com.example.mad_p4.fragment.SearchDadJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/distanceFrag"
+        app:layout_constraintTop_toTopOf="@+id/fragment_random_joke"
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/distanceFrag"
+        android:id="@+id/fragment_random_joke"
         android:name="com.example.mad_p4.fragment.RandomDadJokeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

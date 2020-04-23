@@ -6,7 +6,7 @@
 package com.example.mad_p4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -14,57 +14,68 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.mad_p4.R;
-import com.example.mad_p4.fragment.RandomDadJokeFragment;
-import com.example.mad_p4.fragment.SearchDadJokeFragment;
-import com.example.mad_p4.requester.RandomDadJokeRequester;
 
 public class MainActivity extends AppCompatActivity {
+    FragmentTransaction transaction;
+
+    Fragment randomJokeFragment;
+    Fragment searchJokeFragment;
+    Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState == null) {
+            randomJokeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_random_joke);
+            searchJokeFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_search_joke);
+
+            currentFragment = searchJokeFragment;
+            display(randomJokeFragment);
+        }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
+
     @Override
     public void onSaveInstanceState(Bundle saveInstanceState){
         super.onSaveInstanceState(saveInstanceState);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.temp_settings:
-                displayTempFragment();
+
+            case R.id.search_settings:
+                display(searchJokeFragment);
                 return true;
-            case R.id.distance_settings:
-                displayDistFragment();
+
+            case R.id.random_joke_settings:
+                display(randomJokeFragment);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
+
         }
+
     }
-    public void displayDistFragment() {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        FragmentManager fm = getSupportFragmentManager();
-        RandomDadJokeFragment dist = (RandomDadJokeFragment)fm.findFragmentById(R.id.distanceFrag);
-        SearchDadJokeFragment temp = (SearchDadJokeFragment)fm.findFragmentById(R.id.tempFrag);
-        ft.show(dist);
-        ft.hide(temp);
-        ft.commit();
-    }
-    public void displayTempFragment() {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        FragmentManager fm = getSupportFragmentManager();
-        RandomDadJokeFragment dist = (RandomDadJokeFragment)fm.findFragmentById(R.id.distanceFrag);
-        SearchDadJokeFragment temp = (SearchDadJokeFragment)fm.findFragmentById(R.id.tempFrag);
-        ft.show(temp);
-        ft.hide(dist);
-        ft.commit();
+
+    public void display(Fragment fragment) {
+
+        // hide the current fragment and display the new one
+        getSupportFragmentManager()
+                .beginTransaction()
+                .hide(currentFragment)
+                .show(fragment)
+                .commit(); // save these changes
+
+        currentFragment = fragment; // record the new fragment as the current fragment
     }
 }
