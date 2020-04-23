@@ -22,7 +22,7 @@ DATE: 4/23/2020
         android:layout_marginRight="99dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Search term"
+        android:hint="Type a search term here..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
