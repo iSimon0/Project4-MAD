@@ -1,3 +1,8 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +19,6 @@ import com.example.mad_p4.fragment.SearchDadJokeFragment;
 import com.example.mad_p4.requester.RandomDadJokeRequester;
 
 public class MainActivity extends AppCompatActivity {
-
-    RandomDadJokeRequester joker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

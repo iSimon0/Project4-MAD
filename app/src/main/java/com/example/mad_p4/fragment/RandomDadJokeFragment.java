@@ -1,3 +1,8 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.fragment;
 
 import android.os.Bundle;
@@ -23,8 +28,6 @@ public class RandomDadJokeFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-
-
     }
 
     private void initViews(View view) {

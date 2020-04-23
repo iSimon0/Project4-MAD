@@ -1,3 +1,8 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.requester.request;
 
 import androidx.annotation.Nullable;
@@ -18,12 +23,10 @@ public abstract class DadJokeRequest extends JsonObjectRequest {
     private static final String message = "Dad Joke App for Mobile App Design";
     private static final String repo = "https://github.com/iSimon0/Project4-MAD";
     private static final String contacts = "myersmk@umich.edu, isimon@umich.edu";
-    // private Response.Listener responseListener;
 
 
     public DadJokeRequest(Response.Listener listener, @Nullable Response.ErrorListener errorListener, String extra) {
         super(Method.GET, URL + extra, null, listener, errorListener);
-       //  this.responseListener = listener;
     }
 
     @Override // required to access the API and get response data
@@ -40,7 +43,4 @@ public abstract class DadJokeRequest extends JsonObjectRequest {
         headers.put("Accept", "application/json");
         return headers;
     }
-//
-//    public RandomDadJokeResponseListener getResponseListener() {
-//        return (RandomDadJokeResponseListener) responseListener; }
 }

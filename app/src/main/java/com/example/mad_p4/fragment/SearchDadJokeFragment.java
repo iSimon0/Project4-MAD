@@ -1,3 +1,8 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.fragment;
 
 import android.os.Bundle;
@@ -6,16 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.example.mad_p4.R;
-import com.example.mad_p4.recycler.RecyclerViewAdapter;
-import com.example.mad_p4.requester.request.SearchDadJokeRequest;
 import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.SearchDadJokeRequester;
 
@@ -25,10 +24,7 @@ public class SearchDadJokeFragment extends Fragment {
     private SearchDadJokeResponseListener listener;
     private SearchDadJokeRequester requester;
 
-   //  private RecyclerView list;
     private EditText searchField;
-    private Button nextPageButton;
-    private Button previousPageButton;
     private Button searchButton;
 
     @Override
@@ -41,9 +37,6 @@ public class SearchDadJokeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-//        list = view.findViewById(R.id.jokeList);
-//        list.setLayoutManager(layoutManager);
-
         searchField = view.findViewById(R.id.searchTermInput);
         searchButton = view.findViewById(R.id.searchButton);
     }
@@ -54,10 +47,7 @@ public class SearchDadJokeFragment extends Fragment {
                 getActivity()
         );
 
-
-        // listener.setTarget(list);
         requester.setListener(listener);
-        // requester.search();
     }
 
     @Override
@@ -76,9 +66,6 @@ public class SearchDadJokeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-//        final EditText input = view.findViewById(R.id.searchTermInput);
-//        final Button button = view.findViewById(R.id.button);
-
         initViews(view);
 
         if(savedInstanceState != null){
@@ -94,13 +81,4 @@ public class SearchDadJokeFragment extends Fragment {
             }
         });
     }
-
-//    @Override
-//    public void onRequestFinished(Request request) {
-//        requester.getListener()
-//
-//        list.setAdapter(
-//                new RecyclerViewAdapter()
-//        );
-//    }
 }
