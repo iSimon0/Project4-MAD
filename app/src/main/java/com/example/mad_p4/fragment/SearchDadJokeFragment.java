@@ -18,9 +18,9 @@ import com.example.mad_p4.requester.SearchDadJokeRequester;
 public class SearchDadJokeFragment extends Fragment {
     private String jokeSearchTerm;
 
-    SearchDadJokeRequest request;
-    SearchDadJokeResponseListener listener;
-    SearchDadJokeRequester requester;
+    private SearchDadJokeRequest request;
+    private SearchDadJokeResponseListener listener;
+    private SearchDadJokeRequester requester;
 
     private RecyclerView list;
     private EditText searchField;
@@ -32,14 +32,12 @@ public class SearchDadJokeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-
-        getViews();
-        initRequests();
-
     }
 
-    private void getViews() {
-
+    private void initViews(View view) {
+        list = view.findViewById(R.id.jokeList);
+        searchField = view.findViewById(R.id.searchTermInput);
+        searchButton = view.findViewById(R.id.searchButton);
     }
 
     private void initRequests() {
@@ -70,20 +68,23 @@ public class SearchDadJokeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-        final EditText input = view.findViewById(R.id.editText);
-        final Button button = view.findViewById(R.id.button);
+//        final EditText input = view.findViewById(R.id.searchTermInput);
+//        final Button button = view.findViewById(R.id.button);
+
+        initViews(view);
+        initRequests();
 
         if(savedInstanceState != null){
             jokeSearchTerm = savedInstanceState.getString("term");
-            input.setText(jokeSearchTerm);
+            searchField.setText(jokeSearchTerm);
         }
 
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String searchTerm = input.getText().toString();
-//                requester.search(searchTerm);
-//            }
-//        });
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String searchTerm = searchField.getText().toString();
+                requester.search(searchTerm);
+            }
+        });
     }
 }

@@ -24,14 +24,20 @@ public class RandomDadJokeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
+
+    }
+
+    private void initViews(View view) {
+        jokeText = view.findViewById(R.id.randomJokeText);
+    }
+
+    private void initRequests() {
         listener = new RandomDadJokeResponseListener();
         requester = new RandomDadJokeRequester(getContext());
-        jokeText = getActivity().findViewById(R.id.randomJokeText);
 
         listener.setTarget(jokeText); // update this text on response
         requester.setListener(listener); // attach listener to request
         requester.request(); // request a random joke
-
     }
 
     @Override
@@ -51,6 +57,9 @@ public class RandomDadJokeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         final Button button = view.findViewById(R.id.button);
+
+        initViews(view);
+        initRequests();
 
         if(savedInstanceState != null){
             jokeSaved = savedInstanceState.getString("temp");
