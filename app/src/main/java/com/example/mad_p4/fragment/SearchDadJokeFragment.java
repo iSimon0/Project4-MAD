@@ -8,9 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.example.mad_p4.R;
+import com.example.mad_p4.recycler.RecyclerViewAdapter;
 import com.example.mad_p4.requester.request.SearchDadJokeRequest;
 import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.SearchDadJokeRequester;
@@ -18,7 +22,6 @@ import com.example.mad_p4.requester.SearchDadJokeRequester;
 public class SearchDadJokeFragment extends Fragment {
     private String jokeSearchTerm;
 
-    private SearchDadJokeRequest request;
     private SearchDadJokeResponseListener listener;
     private SearchDadJokeRequester requester;
 
@@ -35,7 +38,12 @@ public class SearchDadJokeFragment extends Fragment {
     }
 
     private void initViews(View view) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
         list = view.findViewById(R.id.jokeList);
+        list.setLayoutManager(layoutManager);
+
         searchField = view.findViewById(R.id.searchTermInput);
         searchButton = view.findViewById(R.id.searchButton);
     }
@@ -87,4 +95,13 @@ public class SearchDadJokeFragment extends Fragment {
             }
         });
     }
+
+//    @Override
+//    public void onRequestFinished(Request request) {
+//        requester.getListener()
+//
+//        list.setAdapter(
+//                new RecyclerViewAdapter()
+//        );
+//    }
 }
