@@ -15,17 +15,13 @@ DATE: 4/23/2020
         android:id="@+id/searchTermInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginLeft="99dp"
         android:layout_marginTop="120dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginRight="99dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Type a search term here..."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/searchTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/searchTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
