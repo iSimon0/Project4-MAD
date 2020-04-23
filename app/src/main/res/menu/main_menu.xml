@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+AUTHOR: IAN SIMON
+DATE: 4/23/2020
+-->
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/distance_settings"
+        android:id="@+id/random_joke_settings"
         app:showAsAction="never"
         android:title="Random Joke">
     </item>
     <item
-        android:id="@+id/temp_settings"
+        android:id="@+id/search_settings"
         app:showAsAction="never"
         android:title="Joke Search">
     </item>
