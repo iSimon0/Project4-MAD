@@ -17,6 +17,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 public class SearchDadJokeResponseListener extends DadJokeResponseListener <RecyclerView> {
     Activity activity;
 

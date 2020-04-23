@@ -4,11 +4,11 @@
     <item
         android:id="@+id/distance_settings"
         app:showAsAction="never"
-        android:title="Distance">
+        android:title="Random Joke">
     </item>
     <item
         android:id="@+id/temp_settings"
         app:showAsAction="never"
-        android:title="Temperature">
+        android:title="Joke Search">
     </item>
 </menu>

@@ -1,3 +1,8 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +20,6 @@ import java.util.ArrayList;
 public class SearchResults extends AppCompatActivity {
 
     RecyclerView list;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

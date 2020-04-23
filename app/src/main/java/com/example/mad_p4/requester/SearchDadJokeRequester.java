@@ -1,3 +1,8 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.requester;
 
 import android.content.Context;
@@ -7,7 +12,6 @@ public class SearchDadJokeRequester extends APIRequester {
 
     private int pageNumber;
     private String searchTerm;
-    private static final int MINIMUM_PAGE_NUMBER = 1;
 
     public SearchDadJokeRequester(Context context) {
         super(context);

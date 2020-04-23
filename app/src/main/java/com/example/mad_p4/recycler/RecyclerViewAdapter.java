@@ -1,6 +1,10 @@
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
 package com.example.mad_p4.recycler;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +19,6 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     private List<String> mData;
-    private LayoutInflater mInflater;
-
-    // data is passed into the constructor
-//    public RecyclerViewAdapter(Context context, ArrayList<String> data) {
-//        this.mInflater = LayoutInflater.from(context);
-//        this.mData = data;
-//    }
-
     public RecyclerViewAdapter(ArrayList<String> data) {
         this.mData = data;
     }
@@ -31,7 +27,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        // view = mInflater.inflate(R.layout.recylerview_populator, parent, false);
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recylerview_populator, parent, false);
 
         return new ViewHolder(view);
