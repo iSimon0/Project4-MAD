@@ -1,7 +1,14 @@
 package com.example.mad_p4.requester.request.listener;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.Application;
+import android.content.Intent;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mad_p4.activity.SearchResults;
 import com.example.mad_p4.recycler.RecyclerViewAdapter;
 
 import org.json.JSONArray;
@@ -11,35 +18,26 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class SearchDadJokeResponseListener extends DadJokeResponseListener <RecyclerView> {
-    RecyclerViewAdapter adapter;
+    Activity activity;
 
-    public void setListAdapter(RecyclerViewAdapter adapter) {
-        this.adapter = adapter;
+    public SearchDadJokeResponseListener(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
     public void onResponse(JSONObject response) {
-
-//        try {
-//            jokes = getJokes(response);
-//            for (String joke : jokes) {
-//                Log.i("Search Joke", joke);
-//            }
-//            RecyclerView recyclerView = activity.findViewById(R.id.jokeList);
-//            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//            adapter = new RecyclerViewAdapter(context, jokes);
-//            recyclerView.setAdapter(adapter);
-//        }
-//        catch (JSONException e) {
-//            e.printStackTrace();
-//        }
         ArrayList<String> jokes;
 
         try {
             jokes = getJokes(response);
 
+            Intent info = new Intent(activity, SearchResults.class);
+            info.putExtra("data", jokes);
+            activity.startActivity(info);
 
-
+//            getTarget().setAdapter(
+//                    new RecyclerViewAdapter(jokes)
+//            );
         }
         catch (JSONException e) {
 
@@ -47,11 +45,11 @@ public class SearchDadJokeResponseListener extends DadJokeResponseListener <Recy
     }
 
     private ArrayList<String> getJokes(JSONObject response) throws JSONException {
-        int limit = response.getInt("limit");
         ArrayList<String> jokes = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
 
-        for (int i = 0; i < limit; i++) {
+
+        for (int i = 0; i < results.length(); i++) {
             jokes.add(results.getJSONObject(i).getString("joke"));
         }
 

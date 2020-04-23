@@ -8,9 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.example.mad_p4.R;
+import com.example.mad_p4.recycler.RecyclerViewAdapter;
 import com.example.mad_p4.requester.request.SearchDadJokeRequest;
 import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListener;
 import com.example.mad_p4.requester.SearchDadJokeRequester;
@@ -18,11 +22,10 @@ import com.example.mad_p4.requester.SearchDadJokeRequester;
 public class SearchDadJokeFragment extends Fragment {
     private String jokeSearchTerm;
 
-    private SearchDadJokeRequest request;
     private SearchDadJokeResponseListener listener;
     private SearchDadJokeRequester requester;
 
-    private RecyclerView list;
+   //  private RecyclerView list;
     private EditText searchField;
     private Button nextPageButton;
     private Button previousPageButton;
@@ -31,25 +34,30 @@ public class SearchDadJokeFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-
+        initRequests();
     }
 
     private void initViews(View view) {
-        list = view.findViewById(R.id.jokeList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
+//        list = view.findViewById(R.id.jokeList);
+//        list.setLayoutManager(layoutManager);
+
         searchField = view.findViewById(R.id.searchTermInput);
         searchButton = view.findViewById(R.id.searchButton);
     }
 
     private void initRequests() {
-        listener = new SearchDadJokeResponseListener();
+        listener = new SearchDadJokeResponseListener(getActivity());
         requester = new SearchDadJokeRequester(
                 getActivity()
         );
 
 
-        listener.setTarget(list);
+        // listener.setTarget(list);
         requester.setListener(listener);
-        requester.search();
+        // requester.search();
     }
 
     @Override
@@ -72,7 +80,6 @@ public class SearchDadJokeFragment extends Fragment {
 //        final Button button = view.findViewById(R.id.button);
 
         initViews(view);
-        initRequests();
 
         if(savedInstanceState != null){
             jokeSearchTerm = savedInstanceState.getString("term");
@@ -87,4 +94,13 @@ public class SearchDadJokeFragment extends Fragment {
             }
         });
     }
+
+//    @Override
+//    public void onRequestFinished(Request request) {
+//        requester.getListener()
+//
+//        list.setAdapter(
+//                new RecyclerViewAdapter()
+//        );
+//    }
 }
