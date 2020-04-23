@@ -1,4 +1,9 @@
-package com.example.mad_p4;
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
+
+package com.example.mad_p4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,29 +13,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.json.JSONException;
+import com.example.mad_p4.R;
+import com.example.mad_p4.fragment.RandomDadJokeFragment;
+import com.example.mad_p4.fragment.SearchDadJokeFragment;
+import com.example.mad_p4.requester.RandomDadJokeRequester;
 
 public class MainActivity extends AppCompatActivity {
-
-    RandomJokeRequester joker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.temp_activity);
-        if (savedInstanceState == null) {
-
-            joker = new RandomJokeRequester(this);
-
-        }
-
-        try {
-            joker.requestRandomDadJoke();
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
+        setContentView(R.layout.activity_main);
 
     }
     @Override
@@ -59,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
     public void displayDistFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         FragmentManager fm = getSupportFragmentManager();
-        RandomJokeFragment dist = (RandomJokeFragment)fm.findFragmentById(R.id.distanceFrag);
-        SearchJokeFragment temp = (SearchJokeFragment)fm.findFragmentById(R.id.tempFrag);
+        RandomDadJokeFragment dist = (RandomDadJokeFragment)fm.findFragmentById(R.id.distanceFrag);
+        SearchDadJokeFragment temp = (SearchDadJokeFragment)fm.findFragmentById(R.id.tempFrag);
         ft.show(dist);
         ft.hide(temp);
         ft.commit();
@@ -68,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     public void displayTempFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         FragmentManager fm = getSupportFragmentManager();
-        RandomJokeFragment dist = (RandomJokeFragment)fm.findFragmentById(R.id.distanceFrag);
-        SearchJokeFragment temp = (SearchJokeFragment)fm.findFragmentById(R.id.tempFrag);
+        RandomDadJokeFragment dist = (RandomDadJokeFragment)fm.findFragmentById(R.id.distanceFrag);
+        SearchDadJokeFragment temp = (SearchDadJokeFragment)fm.findFragmentById(R.id.tempFrag);
         ft.show(temp);
         ft.hide(dist);
         ft.commit();

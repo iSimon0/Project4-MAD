@@ -1,6 +1,10 @@
-package com.example.mad_p4;
+/**
+ * AUTHOR: MITCHELL MYERS
+ * DATE: 4/23/2020
+ */
 
-import android.content.Context;
+package com.example.mad_p4.recycler;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,23 +12,23 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mad_p4.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     private List<String> mData;
-    private LayoutInflater mInflater;
-
-    // data is passed into the constructor
-    RecyclerViewAdapter(Context context, ArrayList<String> data) {
-        this.mInflater = LayoutInflater.from(context);
+    public RecyclerViewAdapter(ArrayList<String> data) {
         this.mData = data;
     }
 
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recylerview_populator, parent, false);
+        View view;
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recylerview_populator, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -43,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder { //TODO: CHECK IF NEED TO BE STATIC
         TextView myTextView;
 
         ViewHolder(View itemView) {
