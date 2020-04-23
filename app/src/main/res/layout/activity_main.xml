@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mad_p4.MainActivity">
+    tools:context="com.example.mad_p4.activity.MainActivity">
 
     <fragment
         android:id="@+id/tempFrag"
-        android:name="com.example.mad_p4.SearchJokeFragment"
+        android:name="com.example.mad_p4.fragment.SearchDadJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/temp_activity" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/distanceFrag"
-        android:name="com.example.mad_p4.RandomJokeFragment"
+        android:name="com.example.mad_p4.fragment.RandomDadJokeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/distance_activity" />
+        tools:layout="@layout/fragment_random" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
