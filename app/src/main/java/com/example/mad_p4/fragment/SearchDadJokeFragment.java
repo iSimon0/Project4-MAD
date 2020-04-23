@@ -25,7 +25,7 @@ public class SearchDadJokeFragment extends Fragment {
     private SearchDadJokeResponseListener listener;
     private SearchDadJokeRequester requester;
 
-    private RecyclerView list;
+   //  private RecyclerView list;
     private EditText searchField;
     private Button nextPageButton;
     private Button previousPageButton;
@@ -34,30 +34,30 @@ public class SearchDadJokeFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-
+        initRequests();
     }
 
     private void initViews(View view) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        list = view.findViewById(R.id.jokeList);
-        list.setLayoutManager(layoutManager);
+//        list = view.findViewById(R.id.jokeList);
+//        list.setLayoutManager(layoutManager);
 
         searchField = view.findViewById(R.id.searchTermInput);
         searchButton = view.findViewById(R.id.searchButton);
     }
 
     private void initRequests() {
-        listener = new SearchDadJokeResponseListener();
+        listener = new SearchDadJokeResponseListener(getActivity());
         requester = new SearchDadJokeRequester(
                 getActivity()
         );
 
 
-        listener.setTarget(list);
+        // listener.setTarget(list);
         requester.setListener(listener);
-        requester.search();
+        // requester.search();
     }
 
     @Override
@@ -80,7 +80,6 @@ public class SearchDadJokeFragment extends Fragment {
 //        final Button button = view.findViewById(R.id.button);
 
         initViews(view);
-        initRequests();
 
         if(savedInstanceState != null){
             jokeSearchTerm = savedInstanceState.getString("term");
