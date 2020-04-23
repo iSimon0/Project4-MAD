@@ -78,12 +78,12 @@ public class SearchDadJokeFragment extends Fragment {
             input.setText(jokeSearchTerm);
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchTerm = input.getText().toString();
-                requester.search(searchTerm);
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String searchTerm = input.getText().toString();
+//                requester.search(searchTerm);
+//            }
+//        });
     }
 }

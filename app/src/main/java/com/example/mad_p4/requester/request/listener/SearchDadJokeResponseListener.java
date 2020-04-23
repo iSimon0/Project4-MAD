@@ -33,7 +33,7 @@ public class SearchDadJokeResponseListener extends DadJokeResponseListener <Recy
 //        catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        String[] jokes;
+        ArrayList<String> jokes;
 
         try {
             jokes = getJokes(response);
@@ -46,7 +46,7 @@ public class SearchDadJokeResponseListener extends DadJokeResponseListener <Recy
         }
     }
 
-    private String[] getJokes(JSONObject response) throws JSONException {
+    private ArrayList<String> getJokes(JSONObject response) throws JSONException {
         int limit = response.getInt("limit");
         ArrayList<String> jokes = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
@@ -55,7 +55,7 @@ public class SearchDadJokeResponseListener extends DadJokeResponseListener <Recy
             jokes.add(results.getJSONObject(i).getString("joke"));
         }
 
-        return (String[]) jokes.toArray();
+        return jokes;
     }
 
 }
