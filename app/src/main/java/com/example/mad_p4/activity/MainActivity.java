@@ -1,5 +1,5 @@
 /**
- * AUTHOR: MITCHELL MYERS
+ * AUTHOR: MITCHELL MYERS, IAN SIMON
  * DATE: 4/23/2020
  */
 
@@ -16,8 +16,6 @@ import android.view.MenuItem;
 import com.example.mad_p4.R;
 
 public class MainActivity extends AppCompatActivity {
-    FragmentTransaction transaction;
-
     Fragment randomJokeFragment;
     Fragment searchJokeFragment;
     Fragment currentFragment;
