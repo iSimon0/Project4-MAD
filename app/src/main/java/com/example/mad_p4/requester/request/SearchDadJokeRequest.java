@@ -8,7 +8,7 @@ import com.example.mad_p4.requester.request.listener.SearchDadJokeResponseListen
 public class SearchDadJokeRequest extends DadJokeRequest {
     public static final String SEARCH = "search";
     public static final String TERM = "?term=";
-    public static final String PAGE = "?page=";
+    public static final String PAGE = "&page=";
     public static final String DEFAULT_SEARCH_TERM = "";
     public static final int DEFAULT_PAGE_NUMBER = 1;
 

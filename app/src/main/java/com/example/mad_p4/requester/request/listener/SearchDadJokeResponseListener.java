@@ -12,11 +12,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class SearchDadJokeResponseListener extends DadJokeResponseListener <RecyclerView> {
-//    RecyclerViewAdapter adapter;
-//
-//    public void setListAdapter(RecyclerViewAdapter adapter) {
-//        this.adapter = adapter;
-//    }
 
     @Override
     public void onResponse(JSONObject response) {
@@ -35,11 +30,11 @@ public class SearchDadJokeResponseListener extends DadJokeResponseListener <Recy
     }
 
     private ArrayList<String> getJokes(JSONObject response) throws JSONException {
-        int limit = response.getInt("limit");
         ArrayList<String> jokes = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
 
-        for (int i = 0; i < limit; i++) {
+
+        for (int i = 0; i < results.length(); i++) {
             jokes.add(results.getJSONObject(i).getString("joke"));
         }
 
