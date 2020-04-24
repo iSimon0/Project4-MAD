@@ -36,6 +36,10 @@ public class SearchDadJokeResponseListener extends DadJokeResponseListener <Recy
         try {
             jokes = getJokes(response);
 
+            if (jokes.size() < 1) { // displays that there weren't any jokes
+                jokes.add("No Results!");
+            }
+
             Intent info = new Intent(activity, SearchResults.class);
             info.putExtra("data", jokes);
             activity.startActivity(info);
